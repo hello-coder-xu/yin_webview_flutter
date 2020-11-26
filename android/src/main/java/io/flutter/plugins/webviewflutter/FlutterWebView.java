@@ -126,6 +126,7 @@ public class FlutterWebView implements PlatformView, MethodCallHandler {
         }
     }
 
+
     @Override
     public View getView() {
         return webView;
