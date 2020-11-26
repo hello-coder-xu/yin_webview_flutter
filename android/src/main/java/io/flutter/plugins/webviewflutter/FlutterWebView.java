@@ -413,7 +413,6 @@ public class FlutterWebView implements PlatformView, MethodCallHandler {
 
     private void updateUserAgent(String userAgent) {
         String currentUserAgent = webView.getSettings().getUserAgentString();
-        System.out.println("test currentUserAgent=" + "currentUserAgent");
         webView.getSettings().setUserAgentString(currentUserAgent + " " + userAgent);
     }
 

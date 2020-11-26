@@ -32,12 +32,10 @@ class CupertinoWebView implements WebViewPlatform {
         if (onWebViewPlatformCreated == null) {
           return;
         }
-        onWebViewPlatformCreated(
-            MethodChannelWebViewPlatform(id, webViewPlatformCallbacksHandler));
+        onWebViewPlatformCreated(MethodChannelWebViewPlatform(id, webViewPlatformCallbacksHandler));
       },
       gestureRecognizers: gestureRecognizers,
-      creationParams:
-          MethodChannelWebViewPlatform.creationParamsToMap(creationParams),
+      creationParams: MethodChannelWebViewPlatform.creationParamsToMap(creationParams),
       creationParamsCodec: const StandardMessageCodec(),
     );
   }
@@ -46,5 +44,5 @@ class CupertinoWebView implements WebViewPlatform {
   Future<bool> clearCookies() => MethodChannelWebViewPlatform.clearCookies();
 
   @override
-  Future<void> setCookies(String url, String cookies) => MethodChannelWebViewPlatform.setCookies(url,cookies);
+  Future<void> setCookies(String url, String cookies) => null;
 }
