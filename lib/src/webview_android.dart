@@ -43,16 +43,14 @@ class AndroidWebView implements WebViewPlatform {
           if (onWebViewPlatformCreated == null) {
             return;
           }
-          onWebViewPlatformCreated(MethodChannelWebViewPlatform(
-              id, webViewPlatformCallbacksHandler));
+          onWebViewPlatformCreated(MethodChannelWebViewPlatform(id, webViewPlatformCallbacksHandler));
         },
         gestureRecognizers: gestureRecognizers,
         // WebView content is not affected by the Android view's layout direction,
         // we explicitly set it here so that the widget doesn't require an ambient
         // directionality.
         layoutDirection: TextDirection.rtl,
-        creationParams:
-            MethodChannelWebViewPlatform.creationParamsToMap(creationParams),
+        creationParams: MethodChannelWebViewPlatform.creationParamsToMap(creationParams),
         creationParamsCodec: const StandardMessageCodec(),
       ),
     );
@@ -60,4 +58,7 @@ class AndroidWebView implements WebViewPlatform {
 
   @override
   Future<bool> clearCookies() => MethodChannelWebViewPlatform.clearCookies();
+
+  @override
+  Future<void> setCookies(String url, String cookies) => null;
 }

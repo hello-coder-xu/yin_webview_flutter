@@ -102,6 +102,13 @@ class MethodChannelWebViewPlatform implements WebViewPlatformController {
   @override
   Future<void> clearCache() => _channel.invokeMethod<void>("clearCache");
 
+  static Future<void> setCookies(String url, String cookies) {
+    final Map<String, dynamic> map = <String, dynamic>{};
+    map['url'] = url;
+    map['cookies'] = cookies;
+    return _cookieManagerChannel.invokeMethod<void>('setCookies', map);
+  }
+
   @override
   Future<void> updateSettings(WebSettings settings) {
     final Map<String, dynamic> updatesMap = _webSettingsToMap(settings);
@@ -175,8 +182,7 @@ class MethodChannelWebViewPlatform implements WebViewPlatformController {
     _addIfNonNull('jsMode', settings.javascriptMode?.index);
     _addIfNonNull('hasNavigationDelegate', settings.hasNavigationDelegate);
     _addIfNonNull('debuggingEnabled', settings.debuggingEnabled);
-    _addIfNonNull(
-        'gestureNavigationEnabled', settings.gestureNavigationEnabled);
+    _addIfNonNull('gestureNavigationEnabled', settings.gestureNavigationEnabled);
     _addSettingIfPresent('userAgent', settings.userAgent);
     return map;
   }

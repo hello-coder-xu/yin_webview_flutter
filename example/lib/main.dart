@@ -187,7 +187,17 @@ class SampleMenu extends StatelessWidget {
   void _onShowUserAgent(WebViewController controller, BuildContext context) async {
     // Send a message with the user agent string to the Toaster JavaScript channel we registered
     // with the WebView.
-    await controller.evaluateJavascript('Toaster.postMessage("User Agent: " + navigator.userAgent);');
+    final String userAgent = await controller.evaluateJavascript('navigator.userAgent');
+    Scaffold.of(context).showSnackBar(SnackBar(
+      content: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          const Text('userAgent:'),
+          _getCookieList(userAgent),
+        ],
+      ),
+    ));
   }
 
   void _onListCookies(WebViewController controller, BuildContext context) async {
